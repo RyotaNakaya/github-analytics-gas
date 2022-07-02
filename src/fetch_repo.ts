@@ -18,7 +18,7 @@ function fetchRepos() {
     const nodes = res["data"]["organization"]["repositories"].nodes;
     let arr = [];
     // arr.push(Object.keys(nodes[0]));
-    for(i=0; i<nodes.length; i++){
+    for(let i=0; i<nodes.length; i++){
       arr.push(Object.values(nodes[i]));
     }
     // setValues
@@ -67,13 +67,14 @@ function fetchReposByGQL(cursor, github_access_token, github_gql_endpoint) {
       }
     }
   }`;
-  const options = {
-    'method' : 'get',
-    'contentType' : 'application/json',
-    'headers' : {
+
+  const options: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
+    method : 'get',
+    contentType : 'application/json',
+    headers : {
       'Authorization' : 'Bearer ' +  github_access_token
      },
-    'payload' : JSON.stringify({query:query})
+    payload : JSON.stringify({query:query})
   };
   const response = UrlFetchApp.fetch(github_gql_endpoint, options);
   const json = JSON.parse(response.getContentText());
