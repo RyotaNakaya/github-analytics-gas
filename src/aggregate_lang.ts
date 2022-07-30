@@ -9,7 +9,7 @@ function aggregatePrimaryLanguage() {
 
   let obj = {};
 
-  for(i=0; i<vals.length; i++){
+  for(let i=0; i<vals.length; i++){
     let val = vals[i][0];
     if (val == "") {
       continue;
@@ -25,7 +25,7 @@ function aggregatePrimaryLanguage() {
 }
 
 function round(origin, digit) {
-  seed = 10**digit
+  const seed = 10**digit
   return Math.round(origin * seed) / seed;
 }
 
